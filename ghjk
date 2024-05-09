@@ -1,0 +1,13 @@
+# Execute 
+JAVA_OPTS="-cp ${EXEC_LCP} ${CDS_OPTS}" 
+JAVA_OPTS="${JAVA_OPTS} CDSBillingSubscriber" 
+JAVA_OPTS="${JAVA_OPTS} ${clientID}" 
+JAVA_OPTS="${JAVA_OPTS} ${subName}" 
+JAVA_OPTS="${JAVA_OPTS} ${selector}" 
+JAVA_OPTS="${JAVA_OPTS} ${durable}" 
+JAVA_OPTS="${JAVA_OPTS} ${transactional}" 
+JAVA_OPTS="${JAVA_OPTS} ${jndiCtxFactory}" 
+JAVA_OPTS="${JAVA_OPTS} ${connFactory}" 
+JAVA_OPTS="${JAVA_OPTS} ${providerURL}" 
+JAVA_OPTS="${JAVA_OPTS} ${topicName}" 
+$JAVA_HOME/bin/java ${JAVA_OPTS} 
