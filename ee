@@ -1,0 +1,111 @@
+# 绘制 页面访问频率排名 柱状图
+def plot_bar_website_count_rank(value, history_data):
+
+    # 频率字典
+    dict_data = {}
+
+    # 对历史记录文件进行遍历
+    for data in history_data:
+        url = data[1]
+        # 简化url
+        key = url_simplification(url)
+
+        if (key in dict_data.keys()):
+            dict_data[key] += 1
+        else:
+            dict_data[key] = 0
+
+    # 筛选出前k个频率最高的数据
+    k = convert_to_number(value)
+    top_10_dict = get_top_k_from_dict(dict_data, k)
+
+    figure = go.Figure(
+        data=[
+            go.Bar(
+                x=[i for i in top_10_dict.keys()],
+                y=[i for i in top_10_dict.values()],
+                name='bar',
+                marker=go.bar.Marker(
+                    color='rgb(55, 83, 109)'
+                )
+            )
+        ],
+        layout=go.Layout(
+            showlegend=False,
+            margin=go.layout.Margin(l=40, r=0, t=40, b=30),
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            xaxis=dict(title='网站'),
+            yaxis=dict(title='次数')
+        )
+    )
+
+
+    return figure
+
+
+
+
+
+
+
+
+# 绘制 搜索关键词排名柱状图 和 搜索引擎使用情况饼图
+def plot_bar_search_word_count_rank(search_word):
+
+
+    # 频率字典
+    dict_data = {}
+
+    # 对搜索关键词数据进行遍历
+    for data in search_word:
+        search_item = data[1]
+        key = search_item
+
+        if (key in dict_data.keys()):
+            dict_data[key][0] += 1
+        else:
+            url_link = data[2]
+            url_visit_time = data[3]
+            dict_data[key] = [1, url_link, url_visit_time]
+
+
+    # 筛选出前10个频率最高的数据
+    top_10_dict = get_top_k_from_dict_value_1(dict_data, 10)
+    # print(top_10_dict)
+
+    # 绘制搜索关键词柱状图
+    figure_1 = go.Figure(
+        data=[
+            go.Bar(
+                x=[key for key in top_10_dict.keys()],
+                y=[value[0] for value in top_10_dict.values()],
+                name='bar',
+                marker=go.bar.Marker(
+                    color='rgb(55, 83, 109)'
+                )
+            )
+        ],
+        layout=go.Layout(
+            showlegend=False,
+            margin=go.layout.Margin(l=40, r=0, t=40, b=30),
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            xaxis=dict(title='关键词'),
+            yaxis=dict(title='次数')
+        )
+    )
+
+
+
+
+
+
+    search_engine_list = ['www.google.com', 'www.bing.com', 'www.yahoo.com', 'www.baidu.com', 'www.sogou.com', 'www.so.com']
+    search_engine_value = [0, 0, 0, 0, 0, 0]
+    for key, value in dict_data.items():
+        for i in range(len(search_engine_list)):
+            if search_engine_list[i] in value[1]:
+                search_engine_value[i] += 1
+                break
+
