@@ -1,0 +1,15 @@
+// It is sometime useful to have the corresponding external user data as a 
+  // hashtable 
+    public Hashtable getExternalUserData()  
+    { 
+    	// Create a hash table  
+		Hashtable externalData = new Hashtable(); 
+		// Get all the external data from fInfo and update the external data 
+		// externalData = parserUser(fInfo); 
+        return externalData; 
+    } 
+ 
+    public Date getLastLogin() { 
+        /**@todo:Implement this com.sun.content.server.service.security.User method*/ 
+        throw new java.lang.UnsupportedOperationException("Method getLastLogin() not yet implemented."); 
+  	} 
