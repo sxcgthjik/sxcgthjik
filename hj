@@ -1,0 +1,9 @@
+... 
+  // Authentication successful 
+  Hashtable apiContext = (Hashtable)response.get("apiContext"); 
+  Integer subscriberId = (Integer)apiContext.get("subscriberId"); 
+  String username = (String)apiContext.get("username"); 
+  String localeCode = (String)apiContext.get("localeCode"); 
+  String mobileId = (String)apiContext.get("mobileId"); 
+  Integer modelId = (Integer)apiContext.get("modelId"); 
+  ... 
