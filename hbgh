@@ -1,0 +1,52 @@
+      function lunb() {
+	   	 for (var i = 0; i < aDp.length; i++) {
+	   	  	 	 aDp[i].className = "";
+	   	  	 	 aImg[i].className = "";
+	   	  	 }
+	   	  	  aDp[now].className = "box-y-x";
+	   	  	  aImg[now].className ="tup";
+	   }
+	   var aBoxt = document.getElementById('box-t');     //获取元素
+	   var aImg = aBoxt.getElementsByTagName('img');
+	   var aDp = aBoxt.getElementsByTagName('p');
+	   var aLeft = document.getElementById('left');
+	   var aRight = document.getElementById('right');
+	   var now = 0;
+	   var dings = 'null';
+	   for (var i = 0; i < aDp.length; i++) {       //通过for循环，给按钮添加事件
+	   	  aDp[i].index = i;
+	   	  aDp[i].onmousemove = function () {
+	   	  	 now = this.index;
+	   	  	 lunb();
+	   	  }
+	   }
+	   aLeft.onclick = function() {        //左箭头
+	   	  now--;
+	   	  if (now < 0) {
+	   	  	 now = 4;
+	   	  }
+	   	  lunb();
+	   }
+	   aRight.onclick = function() {      //右箭头
+	   	  now++;
+	   	  if (now == 5) {
+	   	  	 now = 0;
+	   	  }
+	   	  lunb();
+	   }
+	   dings = setInterval( function () {     //添加定时器
+	   	  now++;
+	   	  if (now == 5) {
+	   	  	 now = 0;
+	   	  }
+	   	  lunb();
+	   },1500);
+	   aBoxt.onmouseout = function() {     //鼠标移出，触发开启定时器事件
+	   	 dings = setInterval( function () {
+	   	  now++;
+	   	  if (now == 5) {
+	   	  	 now = 0;
+	   	  }
+	   	   lunb();
+	     },1500);
+	   }
