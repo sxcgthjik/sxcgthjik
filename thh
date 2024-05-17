@@ -1,0 +1,35 @@
+  <p>将您的金币和经验用于升级</p>
+		        <div class='xp'>
+		          <img src='https://assets.codepen.io/217233/ktkXpIxon.png'>
+		          {{ xp }}xp
+		        </div>
+		        <div class='upgrades'>
+		          <div :key='upgrades.name' class='upgrades_upgrade' v-for='(upgrade, index) in upgrades'>
+		            <h2>{{ index != 0 ? upgrade.type != upgrades[index - 1].type ? upgrade.type : '' : 'Skills' }}</h2>
+		            <div :class="{'max' : upgrade.level &gt; upgrade.maxLevel, 'available': upgrade.type == 'stat' ? xp &gt;= upgrade.cost : gold &gt;= upgrade.cost, 'bought': upgrade.bought}" @click='buy(index, upgrade.type, upgrade.stat);audioController.play("upgrade")' @mouseenter='audioController.play("hover")' class='upgrade'>
+		              <div class='name'>{{ upgrade.names }}</div>
+		              <div class='description'>{{ upgrade.descriptions }}</div>
+		              <div class='cost'>
+		                Cost: {{ upgrade.cost }} {{ upgrade.type == "stat" ? 'xp' : 'gold' }}
+		              </div>
+		              <div class='effect'>
+		                +{{ upgrade.type == "stat" ? upgrade.increment : upgrade.damage }} {{ upgrade.metric }}
+		              </div>
+		              <div class='level' v-if="upgrade.type == 'stat'">
+		                Level: {{ upgrade.level }}
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+		        <div @click='exitShoppingPhase' class='nextPhase'>下一关</div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+<footer class="page-footer">
+  <span>更多游戏👉</span>
+  <a href="https://haiyong.site/moyu" target="_blank">
+	<img class="touxiang"  src="https://haiyong.site/img/favicon.png" alt="George Martsoukos logo">
+  </a>
+</footer>
+	</body>
