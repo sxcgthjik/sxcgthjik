@@ -1,0 +1,10 @@
+setup() {
+    // 登录/注册模式
+    const signUpMode = ref(false)
+    // 登录表单
+    const loginUser = reactive({
+      email: '',
+      password: ''
+    })
+    return { signUpMode, loginUser }
+  }
