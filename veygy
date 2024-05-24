@@ -1,0 +1,12 @@
+/**
+ * 自定义CSV配置
+ * @return CSVFormat
+ */
+public static CSVFormat customCsvFormat(){
+    return CSVFormat.Builder.create()
+            .setAllowMissingColumnNames(false) // 不允许丢失字段名称，默认为True
+            .setDelimiter("|+|") // 自定义数据字段为|+|替换默认的逗号
+            .setHeader(CSV_HEAD) // CSV 表头
+            .setTrim(true) // 去除数据两边的空格，如 "Abc " 则实际输出为"Abc"，但是数据为"A bc",实际输出还是"A bc"
+            .build();
+}
