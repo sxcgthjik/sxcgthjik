@@ -1,0 +1,44 @@
+// 分页所需的数据 如果有多个接口需要使用，可以新建模型类以公用
+public class PaginatedResult<T>
+{
+    public required List<T> Data { get; set; }
+    public int TotalCount { get; set; }
+    public int TotalPages { get; set; }
+    public int CurrentPage { get; set; }
+    public int PageSize { get; set; }
+}
+​
+[HttpGet] // 方法及路径
+public async Task<ActionResult<List<Staff>>> GetAllStaff(int page = 1, int size = 10)
+{
+​
+    // 验证页码和每页大小是否合法  
+    if (page < 1) page = 1;
+    if (size < 1) size = 10;
+​
+    // 计算总记录数和总页数  
+    var totalCount = await _context.Staff.CountAsync();
+    var totalPages = (int)Math.Ceiling(totalCount / (double)size);
+​
+    // 使用Skip和Take方法进行分页查询  
+    var staffList = await _context.Staff
+        .OrderBy(s => s.id) // 假设我们按ID排序，你可以根据需要修改排序条件  
+        .Skip((page - 1) * size)
+        .Take(size)
+        .ToListAsync();
+​
+    if (page > totalPages)
+        return BadRequest("没有更多数据！");
+​
+    // 创建分页结果对象  
+    var paginatedResult = new PaginatedResult<Staff>
+    {
+        Data = staffList,
+        TotalCount = totalCount,
+        TotalPages = totalPages,
+        CurrentPage = page,
+        PageSize = size
+    };
+​
+    return Ok(paginatedResult);
+}
