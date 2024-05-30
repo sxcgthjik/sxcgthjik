@@ -1,0 +1,26 @@
+eval()
+assert()
+preg_replace
+call_user_func()
+call_user_func_array()
+create_function
+array_map()
+系统命令执行相关
+system()
+passthru()
+exec()
+pcntl_exec()
+shell_exec()
+popen()
+proc_open()
+`(反单引号)
+ob_start()
+特殊函数
+phpinfo()
+#这个文件里面包含了PHP的编译选项，启动的扩展、版本、服务器配置信息、环境变量、操作系统信息、path变量等非常重要的敏感配置信息
+symlink()：
+#一般是在linux服务器上使用的，为一个目标建立一个连接，在读取这个链接所连接的文件的内容，并返回内容
+getenv
+#获取一个环境变量的值
+putenv($a)
+#添加$a到服务器环境变量，但环境变量仅存活于当前请求期间。 在请求结束时环境会恢复到初始状态
