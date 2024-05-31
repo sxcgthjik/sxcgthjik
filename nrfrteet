@@ -1,0 +1,10 @@
+test('fetchData 返回结果为 404', async () => {
+  await expect(fetchData()).rejects.toThrow()
+})
+test('fetchData 返回结果为 Promise: { success: true }', async () => {
+  const res = await fetchData()
+  expect(res.data).toEqual({
+      success: true
+  })
+})
+
