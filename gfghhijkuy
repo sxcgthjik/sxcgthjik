@@ -1,0 +1,58 @@
+<?php  
+highlight_file(__FILE__);  
+class A {  
+    public $mack;  
+    public function __invoke()  
+    {  
+        $this->mack->nonExistentMethod();  
+    }  
+}  
+  
+class B {  
+    public $luo;  
+    public function __get($key){  
+        echo "o.O<br>";  
+        $function = $this->luo;  
+        return $function();  
+    }  
+}  
+  
+class C {  
+    public $wang1;  
+  
+    public function __call($wang1,$wang2)  
+    {  
+            include 'flag.php';  
+            echo $flag2;  
+    }  
+}  
+  
+  
+class D {  
+    public $lao;  
+    public $chen;  
+    public function __toString(){  
+        echo "O.o<br>";  
+        return is_null($this->lao->chen) ? "" : $this->lao->chen;  
+    }  
+}  
+  
+class E {  
+    public $name = "xxxxx";  
+    public $num;  
+  
+    public function __unserialize($data)  
+    {  
+        echo "<br>学到就是赚到!<br>";  
+        echo $data['num'];  
+    }  
+    public function __wakeup(){  
+        if($this->name!='' || $this->num!=''){  
+            echo "旅行者别忘记旅行的意义!<br>";  
+        }  
+    }  
+}  
+  
+if (isset($_POST['pop'])) {  
+    unserialize($_POST['pop']);  
+}
