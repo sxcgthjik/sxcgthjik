@@ -1,0 +1,14 @@
+  this.updateParticles = function() {
+      var i = this.particles.length;
+      while (i--) {
+        var p = this.particles[i];
+        p.update(i);
+      }
+    };
+    this.renderParticles = function() {
+      var i = this.particles.length;
+      while (i--) {
+        var p = this.particles[i];
+        p.render();
+      }
+    };
