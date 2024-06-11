@@ -1,0 +1,19 @@
+   return;
+                }
+                if (ft == FillType.Automatic || ft==FillType.DynamicRows || ft==FillType.StaticRows)
+                {
+                    if (ft == FillType.Automatic)
+                    {
+                        int addcells = ReaderData.GetLength(1) - tb.Rows[0].Cells.Count;
+                        for (int i = 0; i < tb.Rows.Count; i++)
+                        {
+                            for (int j = 0; j < addcells; j++)
+                            {
+                                HtmlTableCell tc = new HtmlTableCell();
+                                if (allowToHTML == true)
+                                {
+                                    tc.Attributes.Add("ByHTML", "true");
+                                }
+                                tb.Rows[i].Cells.Add(tc);
+                            }
+                        }
