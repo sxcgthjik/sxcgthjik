@@ -1,0 +1,17 @@
+function PositionLen(s){var i,str1,str2,str3,nLen;	str1 =s;nLen = 0;for(i=1;i<=str1.length;i++){str2=str1.substring(i-1,i);str3=escape(str2);if(str3.length>3){	nLen = nLen + 2;}else{nLen = nLen + 1;}	}
+return nLen;}
+function isNotNull(str){return (str==''?false:true);}
+function isNumber(str){if(str==''){return true;}return (isNaN(str)?false:true);}
+function isNumber(str){if(str==''){return true;}return (isNaN(str)?false:true);}
+function isBNumber(str){if(str==''){return true;}return (!isNaN(str)?parseInt(str,10)>=0?true:false:false);}
+function isSNumber(str){if(str==''){return true;}return (!isNaN(str)?parseInt(str,10)<0?true:false:false);}
+function isAlpha(_str){return (_str.replace(/\w/g,'').length == 0);}
+function isAN(_str){var reg = /^(([a-z]+[0-9]+)|([0-9]+[a-z]+))[a-z0-9]*$/i;return reg.test(_str);}
+function validRegs(_value,_Regs){return _Regs.test(_value); }
+function isVisibled(obj){   if( (obj.style.display=='none')||( (obj.offsetHeight==0)&&(obj.offetWidth==0) ) )       return false; if(obj.currentStyle){if(obj.currentStyle['display']=='none') return false;}  return true;}
+function isFocused(obj){   if( (obj.disabled==false)&&(isVisibled(obj)) )       return true;   return false;}
+function isDate(str,cname,notip){if(str==''){return true;}
+str=str.replace(/\//g,'-');
+dt=str.split(' ');if(dt.length>2){if(!notip) alert(cname+'日期输入不正确！可能包括非法的日期组成部分。');return false;	} dt1=dt[0].split('-');if(dt1.length!=3){if(!notip) 	alert(cname+'日期输入不正确！日期部分应为YYYY-MM-DD。');return false;}dt1n=(dt1[0]+dt1[1]+dt1[2]).split('');for(var i=0;i<dt1.length;i++){if((isNaN(dt1[i])||(ctrim(dt1[i])==''))){if(!notip) 	alert(cname+'字符：'+dt1[i]+'，年月日部分必须输入数字！');	return false;}	}_year=parseInt(dt1[0],10);	_month=parseInt(dt1[1],10);	_day=parseInt(dt1[2],10);if((_year<1000)||(_year>9999)||(_month<1)||(_month>12)||(_day<1)||(_day>31)){if(!notip) alert(cname+'年月日部分输入的数字不合理，请核对！');return false;	}v_date31=new Array;v_date31[0]=4;v_date31[1]=6;v_date31[2]=9;v_date31[3]=11;if((getArrayIndex(v_date31,_month)!=-1)&&(_day>30)){if(!notip) alert(cname+'月份：'+_month+'，天数输入范围不合理！');	return false;}if(_month==2){	if(((_year%4==0)&&(_year%100!=0))||(_year%400==0)){	if(_day>29){if(!notip) alert(cname+'月份：'+_month+'，天数输入范围不合理！');return false;	}}else{	if(_day>28){if(!notip) alert(cname+'月份：'+_month+'，天数输入范围不合理！');return false;	}}	}	return true;   }
+function getArrayIndex(xArray,find){_rs=-1;for(var j=0;j<xArray.length;j++){if(xArray[j]==find){_rs=j;	break; 	}}	return _rs;	}
+function ctrim(ename){ if(ename==undefined) return '';	return (ename.replace(/(^\s*)|(\s*$)/g, '')).replace(/^[\s　\t]+|[\s　\t]+$/, '');}
