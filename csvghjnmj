@@ -1,0 +1,21 @@
+</view>
+  </view>
+</view>
+<!-- 常用工具入口 -->
+<view class="tool-box">
+  <view class="often-tool-title">常用工具</view>
+  <view class="tool-menu-one" >
+    <view class="tool-menu-detail" bindtap="GotomyEarnings">
+      <view style="background: url({{imgUrl}}/upload/20220608/profit.png);background-size: 100% 100%;"
+        class="toolImgBack"></view>
+      <view class="tool-title">我的收益</view>
+    </view>
+    <view class="tool-menu-detail" bindtap="GotoMyTeam">
+      <view style="background: url({{imgUrl}}/upload/20220608/myteam.png);background-size: 100% 100%;"
+        class="toolImgBack"></view>
+      <view class="tool-title">我的团队</view>
+    </view>
+    <view class="tool-menu-detail" bindtap="goCouponList">
+      <view style="background: url({{imgUrl}}/upload/20220608/myCou.png);background-size: 100% 100%;"
+        class="toolImgBack"></view>
+      <view class="tool-title">我的优惠券</view>
