@@ -1,0 +1,31 @@
+import requests
+from bs4 import BeautifulSoup
+ 
+def fetch_data(url):
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        return response.text
+    except requests.exceptions.RequestException as e:
+        print(f"Request failed: {e}")
+        return None
+ 
+def parse_data(html_content):
+    try:
+        soup = BeautifulSoup(html_content, 'html.parser')
+        title = soup.select_one('h1.title').text
+        description = soup.select_one('div.description').text
+        return title, description
+    except AttributeError as e:
+        print(f"Error parsing data: {e}")
+        return None, None
+ 
+url = 'http://example.com'
+html_content = fetch_data(url)
+if html_content:
+    title, description = parse_data(html_content)
+    if title and description:
+        print(f"Title: {title}")
+        print(f"Description: {description}")
+    else:
+        print("Failed to parse data.")
